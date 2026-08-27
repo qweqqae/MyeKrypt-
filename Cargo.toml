@@ -1,0 +1,36 @@
+[package]
+name = "myekrypt"
+version = "0.5.0"
+edition = "2021"
+rust-version = "1.74"
+description = "Terminal file vault: AES-256-GCM + Argon2id with a TUI front-end"
+license = "MIT"
+readme = "README.md"
+
+[lib]
+name = "myekrypt"
+path = "src/lib.rs"
+
+[[bin]]
+name = "cmf"
+path = "src/main.rs"
+
+[dependencies]
+ratatui = "0.26"
+crossterm = "0.27"
+tui-textarea = "0.4"
+aes-gcm = { version = "0.10", features = ["stream", "zeroize"] }
+argon2 = "0.5"
+zeroize = { version = "1.7", features = ["derive"] }
+rand = "0.8"
+tar = "0.4"
+thiserror = "1.0"
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
